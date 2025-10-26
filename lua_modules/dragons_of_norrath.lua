@@ -148,8 +148,8 @@ function don.fix_invalid_faction_state(client)
     -- live reset this to -200 reaction (-100 standing) on an agnostic character
     -- not sure if reset depends on deity faction mod or all characters reset the same
     local reset_amount = -(200 + reset.faction_level)
-    client:Faction(reset.faction_id, reset_amount)
-    client:Message(MT.Yellow, ("You appear to have earned renown with both 'Norrath's Keepers' and the 'Dark Reign'. While we congratulate you on your efforts the two warring camps have found out that you are a spy. You will be granted the title of 'the Devious' and your faction with the '%s' will be adjusted accordingly."):format(don.faction_name[reset.faction_id]))
+    -- client:Faction(reset.faction_id, reset_amount)
+    -- client:Message(MT.Yellow, ("You appear to have earned renown with both 'Norrath's Keepers' and the 'Dark Reign'. While we congratulate you on your efforts the two warring camps have found out that you are a spy. You will be granted the title of 'the Devious' and your faction with the '%s' will be adjusted accordingly."):format(don.faction_name[reset.faction_id]))
     -- todo: lua api for CreateNewPlayerSuffix
 
     -- remove any AA from the reset faction

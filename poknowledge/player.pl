@@ -5,7 +5,8 @@ sub EVENT_ENTERZONE {
 	}
 
 	set_current_position();
-	quest::settimer("check_idle", 1200);
+	quest::settimer("check_idle", 60 * 60);
+	quest::debug("Set idle check timer for 1 hour.");
 }
 
 sub EVENT_CLICKDOOR {

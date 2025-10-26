@@ -1,5 +1,12 @@
 --Omens of War Spells  by Huffdaddy
 
+--59988 Ancient Muramite Rune
+--59987 Glowing Muramite Rune
+--59986 Greater Muramite Rune
+--59985 Muramite Rune
+--59984 Lesser Muramite Rune
+--59983 Minor Muramite Rune
+
 --Bard
 --66 - Luvwen's Aria of Serenity, Vulka's Chant of Disease, Bellow of Chaos
 --67 - Zuriki's Song of Shenanigans, Vulka's Chant of Frost, Luvwen's Lullaby, Cantata of Life, Angstlich's Wail of Panic
@@ -155,7 +162,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77256,100000); -- Item: spell: Chimera  Blood
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Bard" then --Luvwen's Aria of Serenity, Vulka's Chant of Disease, Bellow of Chaos
 		if not e.other:HasSpellScribed(5370) then --Luvwen's Aria of Serenity
@@ -169,7 +176,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77113,100000); -- Item: spell: Bellow of Chaos
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Berserker" then --Axe of the Destroyer, Unpredictable Rage Discipline
 		if not e.other:HasDisciplineLearned(6172) then  --Axe of the Destroyer
@@ -180,7 +187,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77296,100000); -- Item: tome: Unpredictable Rage Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Cleric" then --Pious Remedy, Confidence, Ward of Valiance, Shock of Wonder, Sun Cloak, Symbol of Balikor, Revulsion of Death
 		if not e.other:HasSpellScribed(5251) then --Pious Remedy
@@ -206,7 +213,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77843,100000); -- Item: spell: Revulsion of Death
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Druid" then --Earth Shiver, Tempest Wind, Oaken Vigor, Stormwatch, Instinctual Terror
 		if not e.other:HasSpellScribed(5346) then --Earth Shiver
@@ -226,7 +233,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77852,100000); -- Item: spell: Instinctual Terror
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Enchanter" then --Ethereal Rune, Salik's Animation, Mystic Shield, Cloud of Indifference, Synapsis Spasm
 		if not e.other:HasSpellScribed(5500) then --Ethereal Rune
@@ -246,7 +253,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77233,100000); -- Item: spell: Synapsis Spasm
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Magician" then --{Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}, Child of Wind, Fireskin, Bolt of Jerikor, Summon: Fireblade, Elemental Aura
 		if not e.other:HasSpellScribed(5464) or not e.other:HasSpellScribed(5468) or not e.other:HasSpellScribed(5469) or not e.other:HasSpellScribed(5470) or not e.other:HasSpellScribed(5471) or not e.other:HasSpellScribed(5475) then --{Summon Calliav's Glowing Bauble, Summon Calliav's Jeweled Bracelet, Summon Calliav's Platinum Choker, Summon Calliav's Runed Mantle, Summon Calliav's Spiked Ring, Summon Calliav's Steel Bracelet}
@@ -274,7 +281,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77208,100000); -- Item: spell: Elemental Aura
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Monk" then
 		--66 - Dreamwalk Discipline
@@ -287,7 +294,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77289,100000); -- Item: tome: Axe of the Destroyer
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Necromancer" then --Shadow Guard, Acikin, Chaos Plague, Eidolon Howl
 		if not e.other:HasSpellScribed(5421) then --Shadow Guard
@@ -305,7 +312,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Paladin" then --Force of Piety, Touch of Piety, Direction
 		if not e.other:HasSpellScribed(5284) then --Force of Piety
@@ -320,7 +327,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Ranger" then --Displace Summoned, Shield of Briar, Nature Veil
 		if not e.other:HasSpellScribed(5301) then --Displace Summoned
@@ -335,7 +342,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Rogue" then --Imperceptible Discipline
 		if not e.other:HasDisciplineLearned(6198) then  --Imperceptible Discipline
@@ -343,7 +350,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77294,100000); -- Item: tome: Imperceptible Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Shadow Knight" then --Dark Constriction, Bond of Inruku, Blood of Discord
 		if not e.other:HasSpellScribed(5322) then --Dark Constriction
@@ -358,7 +365,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Shaman" then --Spirit of Sense, Yoppa's Spear of Venom, Spirit of Perseverance, Putrid Decay, Crippling Spasm
 		if not e.other:HasSpellScribed(5390) then --Spirit of Sense
@@ -378,7 +385,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77133,100000); -- Item: spell: Crippling Spasm
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Warrior" then
 		if not e.other:HasDisciplineLearned(6191) then  --Aura of Runes Discipline
@@ -386,7 +393,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77287,100000); -- Item: tome: Aura of Runes Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	elseif class == "Wizard" then --Icebane, Ether Shield, Tears of the Sun, Spark of Fire
 		if not e.other:HasSpellScribed(5442) then --Icebane
@@ -403,7 +410,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:QuestReward(e.self,0,0,0,0,77182,100000); -- Item: spell: Spark of Fire
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59983); -- minor muramite rune
+			giveMinorRune(e); -- minor muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramite rune
@@ -419,7 +426,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77259,100000); -- Item: spell: spiritual vitality
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Bard" then --Zuriki's Song of Shenanigans, Vulka's Chant of Frost, Luvwen's Lullaby, Cantata of Life, Angstlich's Wail of Panic
 		if not e.other:HasSpellScribed(5375) then --Zuriki's Song of Shenanigans
@@ -439,7 +446,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77854,100000); -- Item: spell:  Angstlich's Wail of Panic
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Berserker" then
 		if not e.other:HasDisciplineLearned(6169) then  --Crippling Strike
@@ -448,7 +455,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Cleric" then --Reproach, Panoply of Vie, Sermon of Reproach, Pious Elixir, Blessing of Devotion, Conviction
 		if not e.other:HasSpellScribed(5260) then --Reproach
@@ -471,7 +478,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77008,100000); -- Item: spell:  Conviction
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Druid" then --Nettle Shield, Nature's Serenity, Glacier Breath, Lion's Strength, Sun's Corona, Immolation of the Sun
 		if not e.other:HasSpellScribed(5358) then --Nettle Shield
@@ -494,7 +501,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77090,100000); -- Item: spell: Immolation of the Sun
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Enchanter" then --Felicity, Speed of Salik, Placate, Rune of Salik, Anxiety Attack
 		if not e.other:HasSpellScribed(5503) then --Felicity
@@ -514,7 +521,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77837,100000); -- Item: spell: Anxiety Attack
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Magician" then --Summon Dagger of the Deep, Rain of Jerikor, Child of Water, Summon Crystal Belt, Summon Staff of the North Wind, Summon Sphere of Air
 		if not e.other:HasSpellScribed(5477) then --Summon Dagger of the Deep
@@ -537,7 +544,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77221,100000); -- Item: spell:  Summon Sphere of Air
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Monk" then
 		--nothing
@@ -563,7 +570,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Paladin" then --Spurn Undead, Symbol of Jeron, Crusader's Purity, Silvered Fury
 		if not e.other:HasSpellScribed(5286) then --Spurn Undead
@@ -581,7 +588,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Ranger" then --Locust Swarm, Guard of the Earth, Sylvan Water, Strength of the Hunter
 		if not e.other:HasSpellScribed(5303) then --Locust Swarm
@@ -599,7 +606,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Rogue" then
 		--nothing
@@ -622,7 +629,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Shaman" then --Farrel's Companion, Breath of Wunshi, Spirit of Might, Ancestral Bulwark, Spirit Veil
 		if not e.other:HasSpellScribed(5389) then --Farrel's Companion
@@ -642,7 +649,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77141,100000); -- Item: spell: Spirit Veil
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	elseif class == "Warrior" then
 		--nothing
@@ -658,7 +665,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:QuestReward(e.self,0,0,0,0,77271,100000); -- Item: spell: Phase Walk
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59984); -- lesser muramite rune
+			giveMinorRune(e); -- lesser muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
@@ -674,7 +681,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77262,100000); -- Item: spell: Spirit of Alladnu
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Bard" then --Vulka's Chant of Poison, War March of Muram, Yelhun's Mystic Call, Dirge of Metala
 		if not e.other:HasSpellScribed(5378) then --Vulka's Chant of Poison
@@ -691,7 +698,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77676,100000); -- Item: spell:  Dirge of Metala
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Berserker" then --Mind Strike, Unflinching Will
 		if not e.other:HasDisciplineLearned(6170) then  --Mind Strike
@@ -703,7 +710,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Cleric" then --Sound of Divinity, Hammer of Reproach, Pious Light, Desolate Undead, Unswerving Hammer of Retribution, Deistic Howl
 		if not e.other:HasSpellScribed(5266) then --Sound of Divinity
@@ -726,7 +733,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77831,100000); -- Item: spell: Deistic Howl
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Druid" then --Steeloak Skin, Chlorotrope, Cloak of Nature, Desolate Summoned, Nettlecoat, Wasp Swarm
 		if not e.other:HasSpellScribed(5352) then --Steeloak Skin
@@ -749,7 +756,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77099,100000); -- Item: spell: Wasp Swarm
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Enchanter" then --Clairvoyance, Wall of Alendar, Compel, Psychosis, Circle of Dreams
 		if not e.other:HasSpellScribed(5513) then --Clairvoyance
@@ -769,7 +776,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77855,100000); -- Item: spell:  Circle of Dreams
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Magician" then --Phantom Shield, Blade Strike, Summon: Pouch of Jerikor, Child of Fire, Pyrilen Skin
 		if not e.other:HasSpellScribed(5476) then --Phantom Shield
@@ -789,7 +796,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77226,100000); -- Item: spell: Pyrilen Skin
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); --  muramite rune
+			giveLesserRune(e); --  muramite rune
 		end
 	elseif class == "Monk" then
 		if not e.other:HasDisciplineLearned(6195) then  --Counterforce Discipline
@@ -797,7 +804,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77291,100000); -- Item: tome: Counterforce Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); --  muramite rune
+			giveLesserRune(e); --  muramite rune
 		end
 	elseif class == "Necromancer" then --Desecrating Darkness, Shadow of Death, Fang of Death, Scent of Midnight
 		if not e.other:HasSpellScribed(5430) then --Desecrating Darkness
@@ -815,7 +822,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Paladin" then --Pious Fury, Jeron's Mark, Serene Command, Light of Piety
 		if not e.other:HasSpellScribed(5288) then --Pious Fury
@@ -833,7 +840,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Ranger" then
 		if not e.other:HasSpellScribed(5310) then --Hunter's Vigor
@@ -851,7 +858,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Rogue" then --Deadly Aim Discipline
 		if not e.other:HasDisciplineLearned(6196) then  --Deadly Aim Discipline
@@ -859,7 +866,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77292,100000); -- Item: tome: Deadly Aim Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); --  muramite rune
+			giveLesserRune(e); --  muramite rune
 		end
 	elseif class == "Shadow Knight" then --Son of Decay, Blood of Inruku, Scythe of Inruku, Theft of Pain
 		if not e.other:HasSpellScribed(5331) then --Son of Decay
@@ -877,7 +884,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); --  muramite rune
+			giveLesserRune(e); --  muramite rune
 		end
 	elseif class == "Shaman" then --Talisman of Sense, Yoppa's Rain of Venom, Pained Memory, Spirit of Fortitude, Yoppa's Mending, Wunshi's Focusing
 		if not e.other:HasSpellScribed(5399) then --Talisman of Sense
@@ -900,7 +907,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77135,100000); -- Item: spell: Wunshi's Focusing
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Warrior" then --Savage Onslaught Discipline
 		if not e.other:HasDisciplineLearned(6192) then  --Savage Onslaught Discipline
@@ -908,7 +915,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77288,100000); -- Item: tome:Savage Onslaught Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	elseif class == "Wizard" then --Spark of Lightning, Firebane, Spark of Thunder, Ether Skin, Thundaka
 		if not e.other:HasSpellScribed(5452) then --Spark of Lightning
@@ -928,7 +935,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:QuestReward(e.self,0,0,0,0,77186,100000); -- Item: spell: Thundaka
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59985); -- muramite rune
+			giveLesserRune(e); -- muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater muramite rune
@@ -947,7 +954,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77267,100000); -- Item: spell:Feral Guard
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Bard" then --Verse of Vesagran, Chorus of Life, Eriki's Psalm of Power
 		if not e.other:HasSpellScribed(5374) then --Verse of Vesagran
@@ -962,7 +969,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Berserker" then
 		if not e.other:HasDisciplineLearned(6171) then  --Baffling Strike
@@ -970,7 +977,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77299,100000); -- Item: tome: Baffling Strike
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Cleric" then --Yaulp VII, Mark of the Blameless, Word of Vivification, Aura of Devotion, Calamity
 		if not e.other:HasSpellScribed(5273) then --Yaulp VII
@@ -990,7 +997,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77019,100000); -- Item: spell: Calamity
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Druid" then --Blessing of Oak, Oaken Guard, Solstice Strike, Vengeance of the Sun
 		if not e.other:HasSpellScribed(5353) then --Blessing of Oak
@@ -1008,7 +1015,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Enchanter" then --Euphoria, Arcane Noose, Desolate Deeds, Mayhem, Color Snap, Wake of Felicity
 		if not e.other:HasSpellScribed(5520) then --Euphoria
@@ -1031,7 +1038,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77243,100000); -- Item: spell:  Wake of Felicity
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Magician" then --Elemental Fury, Desolate Summoned, Burning Earth, Renewal of Jerikor, Bulwark of Calliav
 		if not e.other:HasSpellScribed(5478) then --Elemental Fury
@@ -1051,7 +1058,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77228,100000); -- Item: spell: Bulwark of Calliav
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Monk" then
 		if not e.other:HasDisciplineLearned(6175) then  --Phantom Cry
@@ -1059,7 +1066,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77285,100000); -- Item: tome: Phantom Cry
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Necromancer" then --Pyre of Mori, Bulwark of Calliav, Dark Salve, Dull Pain, Dark Hold
 		if not e.other:HasSpellScribed(5437) then --Pyre of Mori
@@ -1080,7 +1087,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Paladin" then --Bulwark of Piety, Armor of the Champion, Hand of Direction, Pious Cleansing
 		if not e.other:HasSpellScribed(5294) then --Bulwark of Piety
@@ -1098,7 +1105,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Ranger" then --Hearth Embers, Howl of the Predator, Nature's Denial, Nature's Balance
 		if not e.other:HasSpellScribed(5313) then --Hearth Embers
@@ -1116,7 +1123,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Rogue" then --Daggerfall
 		if not e.other:HasDisciplineLearned(6174) then  --Daggerfall
@@ -1124,7 +1131,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77284,100000); -- Item: tome: Daggerfall
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Shadow Knight" then --Rune of Decay, Spear of Muram, Pact of Decay, Dread Gaze
 		if not e.other:HasSpellScribed(5332) then --Rune of Decay
@@ -1142,7 +1149,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Shaman" then --Balance of Discord ,Talisman of Fortitude, Pure Spirit, Talisman of Perseverance, Curse of Sisslak, Ice Age.  
 		if not e.other:HasSpellScribed(6827) then --Balance of Discord
@@ -1165,7 +1172,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77146,100000); -- Item: spell: Ice Age
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Warrior" then --Bazu Bellow
 		if not e.other:HasDisciplineLearned(6173) then  --Bazu Bellow
@@ -1173,7 +1180,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77283,100000); -- Item: tome:Bazu Bellow
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	elseif class == "Wizard" then --Meteor Storm, Spark of Ice, Gelidin Comet, Solist's Frozen Sword, Ether Ward
 		if not e.other:HasSpellScribed(5454) then --Meteor Storm
@@ -1193,7 +1200,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:QuestReward(e.self,0,0,0,0,77189,100000); -- Item: spell: Ether Ward
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59986); -- greater muramite rune
+			giveRune(e); -- greater muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing muramite rune
@@ -1212,7 +1219,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77268,100000); -- Item: spell: Festering Malady
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e) -- glowing muramite rune
 		end
 	elseif class == "Bard" then --Vulka's Chant of Flame, Vulka's Lullaby, Voice of the Vampire
 		if not e.other:HasSpellScribed(5385) then --Vulka's Chant of Flame
@@ -1227,7 +1234,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e) -- glowing muramite rune
 		end
 	elseif class == "Berserker" then
 		if not e.other:HasDisciplineLearned(6199) then  --Vengeful Flurry Discipline
@@ -1235,7 +1242,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77295,100000); -- Item: tome: Vengeful Flurry Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e) -- glowing muramite rune
 		end
 	elseif class == "Cleric" then --Placate, Balikor's Mark, Armor of the Pious, Silent Dictation, Hand of Conviction
 		if not e.other:HasSpellScribed(5274) then --Placate
@@ -1255,7 +1262,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77026,100000); -- Item: spell: Hand of Conviction
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Druid" then --Circle of Nettles, Glitterfrost, Blessing of Steeloak, Mask of the Wild, Hungry Vines, Nature's Beckon
 		if not e.other:HasSpellScribed(5365) then --Legacy of Nettles
@@ -1278,7 +1285,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77101,100000); -- Item: spell:Nature's Beckon
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Enchanter" then --Circle of Alendar, Hastening of Salik, Voice of Clairvoyance, True Name
 		if not e.other:HasSpellScribed(5517) then --Circle of Alendar
@@ -1295,7 +1302,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77250,100000); -- Item: spell: True Name
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Magician" then --Circle of Fireskin, Child of Earth, Star Scream, Star Strike, Elemental Simulcram
 		if not e.other:HasSpellScribed(5488) then --Circle of Fireskin
@@ -1315,7 +1322,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77231,100000); -- Item: spell: Elemental Simulcram
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Monk" then
 		if not e.other:HasDisciplineLearned(6194) then  --Rapid Kick Discipline
@@ -1323,7 +1330,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77290,100000); -- Item: tome: Rapid Kick Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Necromancer" then --Desolate Undead, Dark Assassin, Chaos Venom, Dark Possession, Word of Chaos
 		if not e.other:HasSpellScribed(5440) then --Desolate Undead
@@ -1344,7 +1351,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Paladin" then --Brell's Brawny Bulwark, Affirmation, Wave of Piety
 		if not e.other:HasSpellScribed(5297) then --Brell's Brawny Bulwark
@@ -1359,7 +1366,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Ranger" then --Onyx Skin (scroll is Spell: Skin of the Bear), Ward of the Hunter, Call of Lightning
 		if not e.other:HasSpellScribed(5315) then --Onyx Skin
@@ -1375,7 +1382,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Rogue" then --Frenzied Stabbing Discipline
 		if not e.other:HasDisciplineLearned(6197) then  --Frenzied Stabbing Discipline
@@ -1383,7 +1390,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77293,100000); -- Item: tome: Frenzied Stabbing Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Shadow Knight" then --Theft of Hate, Cloak of Discord, Touch of the Devourer
 		if not e.other:HasSpellScribed(5337) then --Theft of Hate
@@ -1398,7 +1405,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Shaman" then --Blood of Yoppa, Spiritual Serenity, Talisman of Wunshi, Champion, Vindictive Spirit, Talisman of Might
 		if not e.other:HasSpellScribed(5414) then --Blood of Yoppa
@@ -1421,7 +1428,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77147,100000); -- Item: spell: Talisman of Might
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Warrior" then --Shocking Defense Discipline
 		if not e.other:HasDisciplineLearned(6190) then  --Shocking Defense Discipline
@@ -1429,7 +1436,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77286,100000); -- Item: Shocking Defense Discipline
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	elseif class == "Wizard" then --Circle of Thunder, Telekara, Gelid Rains, Corona Flare, Bulwark of Calrena
 		if not e.other:HasSpellScribed(5451) then --Circle of Thunder
@@ -1449,7 +1456,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:QuestReward(e.self,0,0,0,0,77195,100000); -- Item: spell: Bulwark of Calrena
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59987); -- glowing muramite rune
+			giveGreaterRune(e); -- glowing muramite rune
 		end
 	end
 elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient muramite rune
@@ -1459,7 +1466,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77270,100000); -- Item: spell:Savage Ice
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Bard" then
 		if not e.other:HasSpellScribed(5388) then --Ancient - Call of Power
@@ -1468,7 +1475,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Berserker" then
 	elseif class == "Cleric" then --Hallowed Light, Pious Conscience
@@ -1480,7 +1487,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77027,100000); -- Item: spell:Pious Conscience
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Druid" then --Ancient - Chlorobon, Glacier Frost
 		if not e.other:HasSpellScribed(6141) then --Ancient - Chlorobon
@@ -1491,7 +1498,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77110,100000); -- Item: spell:Glacier Frost
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Enchanter" then ----Ancient - Neurosis, Voice of Muram
 		if not e.other:HasSpellScribed(5523) then --Ancient - Neurosis
@@ -1502,7 +1509,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77280,100000); -- Item: spell:Voice of Muram
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Magician" then --Ancient - Nova Strike, Veil of Pyrilonus
 		if not e.other:HasSpellScribed(5498) then --Ancient - Nova Strike
@@ -1514,7 +1521,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Monk" then
 		-- nothing
@@ -1528,7 +1535,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Paladin" then --Ancient - Force of Jeron
 		if not e.other:HasSpellScribed(5299) then --Ancient - Force of Jeron
@@ -1536,7 +1543,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77046,100000); -- Item: spell: Ancient - Force of Jeron
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Ranger" then --Ancient - North Wind
 		if not e.other:HasSpellScribed(5319) then --Ancient - North Wind
@@ -1544,7 +1551,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77064,100000); -- Item: spell: Ancient - North Wind
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Rogue" then
 		--nothing
@@ -1554,7 +1561,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 			e.other:QuestReward(e.self,0,0,0,0,77083,100000); -- Item: spell: ancient Bite of Muram
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Shaman" then --Ancient - Wilslik's Mending, Ancestral Calling
 		if not e.other:HasSpellScribed(6142) then --Ancient - Wilslik's Mending
@@ -1566,7 +1573,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	elseif class == "Warrior" then
 		--nothing
@@ -1580,9 +1587,29 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient murami
 		
 		else
 			e.self:Emote("throws the rune back at you. 'What is this! We've been over this rune already! My soul burns with fury and you are stoking the embers!'");
-			e.other:SummonItem(59988); -- ancient muramite rune
+			giveGlowingRune(e); -- ancient muramite rune
 		end
 	end
 end
 item_lib.return_items(e.self, e.other, e.trade)
+end
+
+function giveGlowingRune(e)
+	e.other:SummonItem(59987); -- glowing muramite rune
+end
+
+function giveGreaterRune(e)
+	e.other:SummonItem(59986); -- greater muramite rune
+end
+
+function giveRune(e)
+	e.other:SummonItem(59985); -- muramite rune
+end
+
+function giveLesserRune(e)
+	e.other:SummonItem(59984); -- lesser muramite rune
+end
+
+function giveMinorRune(e)
+	e.other:SummonItem(59983); -- minor muramite rune
 end

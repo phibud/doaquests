@@ -50,12 +50,20 @@ function CheckLeash(e)
 		e.self:GotoBind();
 		e.self:SetHP(e.self:GetMaxHP());
 		e.self:WipeHateList();
+		
 	end
 end
 
 function PortalAdds(mob)
+	
+	if (mob == nil) then
+		eq.debug("PortalAdds called without valid mob...");
+		return;
+	end
+	eq.debug("PortalAdds called for portal mob id: " .. tostring(mob:GetNPCTypeID()));
 	local id = eq.ChooseRandom(334085, 334086);
 	if id > 0 then
+		eq.debug("Spawning add id: " .. tostring(id) .. " at portal mob id: " .. tostring(mob:GetNPCTypeID()));
 		eq.spawn2(id, 0, 0, mob:GetX(), mob:GetY(), mob:GetZ(), mob:GetHeading());
 	end
 end
@@ -65,12 +73,21 @@ function DistanceToWaypoint(self)
 end
 
 function CheckPortals()
-	portals[334048] = eq.unique_spawn(334042, 0, 0, -10.410000, -460.600006, 301.529999, 204.399994);	-- Zulaqua
-	portals[334047] = eq.unique_spawn(334116, 0, 0, 20.139999, -448.910004, 301.519989, 211.199996);	-- Yelnia
-	portals[334045] = eq.unique_spawn(334117, 0, 0, 360.079987, -437.690002, 301.519989, 293.200012);	-- Quellon
-	portals[334043] = eq.unique_spawn(334118, 0, 0, 433, -467, 301.437286, 305.5);						-- Puja
-	portals[334044] = eq.unique_spawn(334119, 0, 0, 401.299988, -446.410004, 301.529999, 302.399994);	-- Lana
-	portals[334046] = eq.unique_spawn(334120, 0, 0, 46, -439, 305, 208);								-- Kira
+	eq.debug("Checking portals...");
+	
+	--portals[334048] = eq.unique_spawn(334042, 0, 0, -10.410000, -460.600006, 301.529999, 204.399994);	-- Zulaqua
+	--portals[334047] = eq.unique_spawn(334116, 0, 0, 20.139999, -448.910004, 301.519989, 211.199996);	-- Yelnia
+	--portals[334045] = eq.unique_spawn(334117, 0, 0, 360.079987, -437.690002, 301.519989, 293.200012);	-- Quellon
+	--portals[334043] = eq.unique_spawn(334118, 0, 0, 433, -467, 301.437286, 305.5);						-- Puja
+	--portals[334044] = eq.unique_spawn(334119, 0, 0, 401.299988, -446.410004, 301.529999, 302.399994);	-- Lana
+	--portals[334046] = eq.unique_spawn(334120, 0, 0, 46, -439, 305, 208);								-- Kira
+	
+	portals[334048] = eq.get_entity_list():GetMobByNpcTypeID(334042);
+	portals[334047] = eq.get_entity_list():GetMobByNpcTypeID(334116);
+	portals[334045] = eq.get_entity_list():GetMobByNpcTypeID(334117);
+	portals[334043] = eq.get_entity_list():GetMobByNpcTypeID(334118);
+	portals[334044] = eq.get_entity_list():GetMobByNpcTypeID(334119);
+	portals[334046] = eq.get_entity_list():GetMobByNpcTypeID(334120);
 end
 
 -- Queen hooks
@@ -91,6 +108,13 @@ function QueenSpawnDelayed(e)
 	eq.unique_spawn(334043, 0, 0, 387.399994, -727.260010, 301.464233, 0);			-- Puja
 	eq.unique_spawn(334044, 0, 0, 348.929993, -726.700012, 301.464233, 0);			-- Lana
 	eq.unique_spawn(334046, 0, 0, 101.529999, -725.630005, 301.464203, 1.5);		-- Kira
+
+	eq.unique_spawn(334042, 0, 0, -10.410000, -460.600006, 301.529999, 204.399994);	-- Zulaqua portal
+	eq.unique_spawn(334116, 0, 0, 20.139999, -448.910004, 301.519989, 211.199996);	-- Yelnia portal
+	eq.unique_spawn(334117, 0, 0, 360.079987, -437.690002, 301.519989, 293.200012);	-- Quellon portal
+	eq.unique_spawn(334118, 0, 0, 433, -467, 301.437286, 305.5);						-- Puja portal
+	eq.unique_spawn(334119, 0, 0, 401.299988, -446.410004, 301.529999, 302.399994);	-- Lana portal
+	eq.unique_spawn(334120, 0, 0, 46, -439, 305, 208);								-- Kira portal
 	CheckPortals(); -- need to verify (#repop can break the encounter loading :P)
 end
 
@@ -101,11 +125,13 @@ function QueenTimer(e)
 		QueenSpawnDelayed(e);
 		eq.stop_timer(e.timer);
 	elseif e.timer == "portals" then
+		eq.debug("Queen Timer event...");
 		if e.self:IsEngaged() then
 			eq.set_timer("portals", math.random(40,60) * 1000); -- 40-60 sec
 			local portal = portals[eq.ChooseRandom(334048, 334047, 334045, 334043, 334044, 334046)];
 			eq.spawn2(334086, 0, 0, portal:GetX(), portal:GetY(), portal:GetZ(), portal:GetHeading());
 		else
+			eq.debug("Queen Timer event stopping...");
 			eq.stop_timer("portals");
 			timerstate[e.self:GetID()] = false;
 		end
@@ -136,10 +162,18 @@ function PrincessTimer(e)
 	if e.timer == "tether" then
 		CheckLeash(e);
 	elseif e.timer == "portals" then
+		eq.debug("Princess Timer event...");
 		if e.self:IsEngaged() then
 			eq.set_timer("portals", math.random(40,60) * 1000); -- 40-60 sec
+			eq.debug("PrincessTimer portals for NPC Type ID: " .. tostring(e.self:GetNPCTypeID()));
+			local count = 0
+			for _ in pairs(portals) do
+				count = count + 1
+			end
+			eq.debug("Portal Array size: " .. count);
 			PortalAdds(portals[e.self:GetNPCTypeID()]);
 		else
+			eq.debug("Princess Timer event stopping...");
 			eq.stop_timer("portals");
 			timerstate[e.self:GetID()] = false;
 		end
@@ -176,6 +210,7 @@ end
 
 function PrincessCombat(e)
 	if e.joined then
+		
 		if not timerstate[e.self:GetID()] then
 			eq.set_timer("portals", 5 * 1000); -- 5 sec initially
 			timerstate[e.self:GetID()] = true;
@@ -257,6 +292,12 @@ function ChimeraTimer(e)
 end
 
 function BombSpawn(e)
+	eq.debug("Bomb spawned at " .. e.self:GetX() .. ", " .. e.self:GetY() .. ", " .. e.self:GetZ());
+	if (e.self:GetX() == 0 or e.self:GetY() == 0) then
+		eq.debug("Bomb spawned at 0,0 - depopping");
+		eq.depop();
+		return;
+	end
 	if queen ~= nil then
 		e.self:MoveTo(queen:GetX(), queen:GetY(), queen:GetZ(), 0, true)
 	end
@@ -301,6 +342,8 @@ function AddTimer(e)
 end
 
 function event_encounter_load(e)
+	eq.debug("Queen event loaded...");
+
 	eq.register_npc_event("queen", Event.spawn, 334049, QueenSpawn);
 	eq.register_npc_event("queen", Event.timer, 334049, QueenTimer);
 	eq.register_npc_event("queen", Event.combat, 334049, QueenCombat);

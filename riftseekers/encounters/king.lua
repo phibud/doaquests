@@ -73,12 +73,19 @@ function ExploadOrb(mob)
 end
 
 function CheckPortals()
-	portals[334040] = eq.unique_spawn(334034, 0, 0, -254.000000, -348.000000, -775.640015, 198.800004);	-- Ilsin
-	portals[334039] = eq.unique_spawn(334113, 0, 0, -227.350693, -330.371887, -775.744202, 200.75);		-- Cynin
-	portals[334038] = eq.unique_spawn(334112, 0, 0, -201.000000, -315.000000, -771.000000, 208);		-- Scyllus
-	portals[334037] = eq.unique_spawn(334115, 0, 0, 100.360001, -310.549988, -775.650024, 293.200012);	-- Britalic
-	portals[334036] = eq.unique_spawn(334114, 0, 0, 128.330002, -325.309998, -775.650024, 301.200012);	-- Allin
-	portals[334035] = eq.unique_spawn(334111, 0, 0, 153.787323, -343.277649, -775.744202, 311);			-- Kiranus
+	--portals[334040] = eq.unique_spawn(334034, 0, 0, -254.000000, -348.000000, -775.640015, 198.800004);	-- Ilsin
+	--portals[334039] = eq.unique_spawn(334113, 0, 0, -227.350693, -330.371887, -775.744202, 200.75);		-- Cynin
+	--portals[334038] = eq.unique_spawn(334112, 0, 0, -201.000000, -315.000000, -771.000000, 208);		-- Scyllus
+	--portals[334037] = eq.unique_spawn(334115, 0, 0, 100.360001, -310.549988, -775.650024, 293.200012);	-- Britalic
+	--portals[334036] = eq.unique_spawn(334114, 0, 0, 128.330002, -325.309998, -775.650024, 301.200012);	-- Allin
+	--portals[334035] = eq.unique_spawn(334111, 0, 0, 153.787323, -343.277649, -775.744202, 311);			-- Kiranus
+
+	portals[334040] = eq.get_entity_list():GetMobByNpcTypeID(334034);
+	portals[334039] = eq.get_entity_list():GetMobByNpcTypeID(334113);
+	portals[334038] = eq.get_entity_list():GetMobByNpcTypeID(334112);
+	portals[334037] = eq.get_entity_list():GetMobByNpcTypeID(334115);
+	portals[334036] = eq.get_entity_list():GetMobByNpcTypeID(334114);
+	portals[334035] = eq.get_entity_list():GetMobByNpcTypeID(334111);
 end
 
 -- king hooks
@@ -99,6 +106,13 @@ function KingSpawnDelayed(e)
 	eq.unique_spawn(334037, 0, 0, 59.000000, -580.000000, -768.375000, 0);			-- Britalic
 	eq.unique_spawn(334036, 0, 0, 92.400002, -579.369995, -775.599976, 0);			-- Allin
 	eq.unique_spawn(334035, 0, 0, 127.000000, -580.000000, -768.375000, 0);			-- Kiranus
+
+	eq.unique_spawn(334034, 0, 0, -254.000000, -348.000000, -775.640015, 198.800004);	-- Ilsin portal
+	eq.unique_spawn(334113, 0, 0, -227.350693, -330.371887, -775.744202, 200.75);		-- Cynin portal
+	eq.unique_spawn(334112, 0, 0, -201.000000, -315.000000, -771.000000, 208);		-- Scyllus portal
+	eq.unique_spawn(334115, 0, 0, 100.360001, -310.549988, -775.650024, 293.200012);	-- Britalic portal
+	eq.unique_spawn(334114, 0, 0, 128.330002, -325.309998, -775.650024, 301.200012);	-- Allin portal
+	eq.unique_spawn(334111, 0, 0, 153.787323, -343.277649, -775.744202, 311);			-- Kiranus portal
 	CheckPortals();
 end
 
@@ -278,6 +292,12 @@ function FeranTimer(e)
 end
 
 function OrbSpawn(e)
+	eq.debug("Orb spawned at " .. e.self:GetX() .. ", " .. e.self:GetY() .. ", " .. e.self:GetZ());
+	if (e.self:GetX() == 0 or e.self:GetY() == 0) then
+		eq.debug("orb spawned at 0,0 - depopping");
+		eq.depop();
+		return;
+	end
 	if king ~= nil then
 		e.self:MoveTo(king:GetX(), king:GetY(), king:GetZ(), 0, true);
 	end

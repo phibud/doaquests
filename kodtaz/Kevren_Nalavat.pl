@@ -201,6 +201,9 @@ sub PROGRESS_UPDATE {
     if (defined($qglobals{ikky_flesh})) {
       $client->Message(14, "Finished! - You've returned four relics from the Martyrs Passage!");
     }
+    if ($qglobals{ikky_flesh} >=2) {
+      $client->Message(14, "Finished! - You've returned valuable information as to why the Muramites are in the Martyrs Passage!");
+    }
   }
   if ($qglobals{ikky} >= 5) {
     $client->Message(14, "Finished! - You've returned four relics from the Martyrs Passage!");

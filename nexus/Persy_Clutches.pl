@@ -1,6 +1,29 @@
 sub EVENT_SAY {
   if ($text=~/hail/i) {
-    quest::say("Welcome to the center of Luclin $name. This is a very magical place. The magic that emanates from here can be felt even on the surface. Don't forget to speak to as many of us as you can before you venture far.");
+    quest::say("Welcome to the center of Luclin $name. This is a very magical place. The magic that emanates from here can be felt even on the surface. Don't forget to speak to as many of us as you can before you venture far.  Would you like a [buff] for your travels?");
+  } elsif ($text=~/buff/i) {
+    quest::say($ulevel);
+    quest::say("You don't look so good.  Here, let me help you..");
+    quest::doanim(42);
+    if ($ulevel >= 65) {
+      quest::selfcast(5415);  # Talisman of Wunshi
+      quest::selfcast(5278); # Hand of Conviction
+      quest::selfcast(3185); # Flight of Eagles
+      quest::selfcast(5522); # Voice of Clairvoyance
+      quest::selfcast(5312); # Howl of the Predator
+      quest::selfcast(5353); # Blessing of Oak
+      quest::selfcast(5521); # Hastening of Salik
+      quest::selfcast(5409); # Talisman of Might
+      quest::selfcast(5399); # Talisman of Sense
+      
+    }
+    if ($ulevel >=47) {
+      quest::selfcast(3444); # Protection of Seasons
+    }
+		
+    
+    
+    
   }
 # Expansion: Empires of Kunark
 #  if ($text=~/hail/i) {
