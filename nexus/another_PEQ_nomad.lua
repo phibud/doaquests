@@ -90,15 +90,15 @@ function event_say(e)
                     e.self:Say("Sorry, " .. player_name .. ", I could not read your backup configuration.")
                     eq.debug("Failed to open INI file: " .. ini_file)
                 end
-                
-            elseif e.message:findi("sync") then
-                e.self:Say("Your character is flagged for another sync.  Please wait while we transfer your characters information.  This may take a bit.")
-                eq.set_global(flag_key, "1", 5, "F")
-
-            elseif e.message:findi("lock") then
-                e.self:Say("Your character is now locked from receiving additional updates.")
-                eq.set_global(flag_key, "9", 5, "F")
             end
+                
+        elseif e.message:findi("sync") then
+            e.self:Say("Your character is flagged for another sync.  Please wait while we transfer your characters information.  This may take a bit.")
+            eq.set_global(flag_key, "1", 5, "F")
+
+        elseif e.message:findi("lock") then
+            e.self:Say("Your character is now locked from receiving additional updates.")
+            eq.set_global(flag_key, "9", 5, "F")
         end
     else
         e.self:Say("Greetings " .. player_name .. "! I don't think I'm familiar with you.")

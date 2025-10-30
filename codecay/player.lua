@@ -1,10 +1,26 @@
 -- player.lua codecay
 function event_enter_zone(e)
-	local qglobals = eq.get_qglobals(e.self);
+	local dz = eq.get_expedition()
+
+    if dz.valid then
+        eq.debug(string.format("Player entered INSTANCED zone"));
+        -- Example: hide Classic-era mobs only in the instance
+        eq.disable_spawn2(39989)   -- spawn2.id from DB
+        eq.disable_spawn2(58286)
+		eq.disable_spawn2(58390)
+		
+    else
+        eq.debug(string.format("Player entered PERSISTENT zone"));
+		local qglobals = eq.get_qglobals(e.self);
 	
-	if(qglobals["mage_epic"] == "10" and qglobals["mage_epic_cod"] == nil) then
-		e.self:Message(MT.Yellow,"Your staff begins to glow");
-	end
+		if(qglobals["mage_epic"] == "10" and qglobals["mage_epic_cod"] == nil) then
+			e.self:Message(MT.Yellow,"Your staff begins to glow");
+		end
+    end
+	
+		
+	
+	
 end
 
 function event_click_door(e)
