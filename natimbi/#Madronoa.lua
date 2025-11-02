@@ -16,6 +16,11 @@ function event_say(e)
 			-- send to safe spot in Qvic. Confirmed /loc on Live as of 2011/05/31
 			e.other:MovePC(295,-124,-651,-422,0); -- Zone: qvic
 		end
+
+		if (tonumber(qglobals["god_qvic_access"]) >= 1) then
+			-- send to safe spot in Qvic. Confirmed /loc on Live as of 2011/05/31
+			e.other:MovePC(295,-124,-651,-422,0); -- Zone: qvic
+		end
 	end
 end
 
