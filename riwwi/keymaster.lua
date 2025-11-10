@@ -1,5 +1,5 @@
 local BIC_ITEM_ID        = 52154
-local RESPAWN_SECONDS    = 91 * 60
+local RESPAWN_SECONDS    = tostring(91 * 60)
 local CHECK_INTERVAL_MS  = 5 * 1000
 local TIMER_NAME         = "bic_check"
 local COOLDOWN_KEY       = "riwwi_ground_spawn"
@@ -30,7 +30,8 @@ local function spawn_random_ground_item(item_id)
 end
 
 local function cooldown_active()
-  return eq.get_data(COOLDOWN_KEY) ~= nil
+  local rv = eq.get_data(COOLDOWN_KEY) == "1"
+  return rv
 end
 
 local function start_cooldown()
@@ -38,7 +39,9 @@ local function start_cooldown()
 end
 
 function event_spawn(e)
+  eq.debug("Keymaster Riwwi spawned, starting ground item check timer.  Respawn interval: "..RESPAWN_SECONDS.." seconds.")
   eq.set_timer(TIMER_NAME, CHECK_INTERVAL_MS)
+  eq.set_data(COOLDOWN_KEY, "0")
 
   if not is_item_on_ground(BIC_ITEM_ID) and not cooldown_active() then
     spawn_random_ground_item(BIC_ITEM_ID)
@@ -49,7 +52,11 @@ end
 function event_timer(e)
   if e.timer ~= TIMER_NAME then return end
 
+  
   local item_present = is_item_on_ground(BIC_ITEM_ID)
+
+  local cooldown = eq.get_data(COOLDOWN_KEY)
+  
 
   if not item_present and not cooldown_active() then
     spawn_random_ground_item(BIC_ITEM_ID)

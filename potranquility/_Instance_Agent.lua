@@ -6,6 +6,8 @@ local instance = {
 	zonein     = { x=-2678.0, y=-323.0, z=3, h=0 }
 }
 
+local flagRequired="pop_pov_aerin_dar";
+
 function event_spawn(e)
     
     
@@ -16,6 +18,8 @@ function event_spawn(e)
 end
 
 function event_say(e)
+    local qglobals = eq.get_qglobals(e.self, e.other);
+    local flag_value = qglobals[flagRequired];
     local dz = e.other:GetExpedition();
     local dzid = dz:GetID();
 
@@ -38,44 +42,29 @@ function event_say(e)
 
         
     elseif e.message:findi("ready") then
+        local lvl = e.other:GetLevel();
         if dzid>0 then
-            e.self:Say("Very well.  Take care!");
-            e.other:MovePCDynamicZone("hohonora");
+            if lvl>=62 then
+                e.self:Say("Very well.  Take care!");
+                e.other:MovePCDynamicZone("hohonora");
+            elseif flag_value=="1" then
+
+                e.self:Say("Very well.  Take care!");
+                e.other:MovePCDynamicZone("hohonora");
+            else
+                e.self:Say("You have not yet proven yourself worthy to enter the Halls of Honor. Return when you have done so.");
+            end
         end
         
     elseif e.message:findi("test") then
         
-        -- local query = "select * from doa_instanceAgent"
-        -- local db = Database()
-
-        -- local ok, stmt = pcall(function() return db:prepare(query) end)
-        -- if not ok then
-        --     db:close()
-        --     if stmt then error("error: " .. stmt) end
-        -- end
-
-        -- local ok, err = pcall(function() return stmt:execute() end)
-        -- if not ok then
-        --     stmt:close()
-        --     db:close()
-        --     if err then error("error: " .. err) end
-        -- end
-
-        -- e.self:Say("Which instance do you want to create?");
-        -- local row_count = 0;
-        -- row = stmt:fetch_hash()
-        -- while row do
-        --     row_count = row_count + 1
-        --     e.self:Say(string.format("[instance %d] - %s", row["id"], row["name"]))
-        --     row = stmt:fetch_hash()
-        -- end
-
+        local lvl = e.other:GetLevel();
+        e.self:Say("Your level is "..lvl);
+        if lvl>=62 then
+            e.self:Say("You meet the level requirement.");
+        else
+            e.self:Say("You do not meet the level requirement.");
+        end
         
-        -- if row_count == 0 then
-        --     e.self:Say("No rows found for id = 1")
-        -- end
-
-        -- stmt:close()
-        -- db:close()
     end
 end

@@ -6,8 +6,12 @@ local instance = {
 	zonein     = { x=-170, y=-65, z=-92.5, h=0 }
 }
 
+local flagRequired="pop_pod_grimmus_planar_projection";
+
 
 function event_say(e)
+    local qglobals = eq.get_qglobals(e.self, e.other);
+    local flag_value = qglobals[flagRequired];
     local dz = e.other:GetExpedition();
     local dzid = dz:GetID();
 
@@ -31,9 +35,19 @@ function event_say(e)
 
         
     elseif e.message:findi("ready") then
+        
+        local lvl = e.other:GetLevel();
         if dzid>0 then
-            e.self:Say("Very well.  Take care!");
-            e.other:MovePCDynamicZone("codecay");
+            if lvl>=55 then
+                e.self:Say("Very well.  Take care!");
+                e.other:MovePCDynamicZone("codecay");
+            elseif flag_value=="1" then
+
+                e.self:Say("Very well.  Take care!");
+                e.other:MovePCDynamicZone("codecay");
+            else
+                e.self:Say("You have not yet proven yourself worthy to enter the Crypt of Decay. Return when you have done so.");
+            end
         end
         
     elseif e.message:findi("test") then

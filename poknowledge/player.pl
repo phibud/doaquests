@@ -1,8 +1,8 @@
 sub EVENT_ENTERZONE {
-	if (quest::istaskcompleted(5745) == 0 && quest::istaskactive(5745) == 0) #Check if completed Task: New Beginnings
-	{
-		quest::assigntask(5745); #Force assign Task: New Beginnings
-	}
+	# if (quest::istaskcompleted(5745) == 0 && quest::istaskactive(5745) == 0) #Check if completed Task: New Beginnings
+	# {
+	# 	quest::assigntask(5745); #Force assign Task: New Beginnings
+	# }
 
 	set_current_position();
 	quest::settimer("check_idle", 60 * 60);
