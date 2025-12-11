@@ -70,11 +70,11 @@ local PHASE5COMPLETE	= 'Phase 5 Complete'
 
 
 Lockouts = {
-		[223170] = {P1AIR,    				eq.seconds('12h')},
-		[223169] = {P1EARTH,    			eq.seconds('12h')},
-		[223172] = {P1WATER,   				eq.seconds('12h')},
-		[223173] = {P1FIRE,   	 			eq.seconds('12h')},
-		[223171] = {P1UNDEAD,  				eq.seconds('12h')},
+		[223170] = {P1AIR,    				eq.seconds('24h')},
+		[223169] = {P1EARTH,    			eq.seconds('24h')},
+		[223172] = {P1WATER,   				eq.seconds('24h')},
+		[223173] = {P1FIRE,   	 			eq.seconds('24h')},
+		[223171] = {P1UNDEAD,  				eq.seconds('24h')},
 		[223118] = {P2AIR,    				eq.seconds('132h')},
 		[223134] = {P2EARTH,    			eq.seconds('132h')},
 		[223096] = {P2WATER,   	 			eq.seconds('132h')},
