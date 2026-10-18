@@ -1,5 +1,8 @@
-
-
+local instance = {
+            expedition = { name = "Halloween: Tipt Version 2", min_players = 1, max_players = 6 },
+            instance   = { zone = "tipt", version = 2, duration = eq.seconds("1h") },
+            zonein     = { x = -430, y = -2375, z = 18, h = 0 }
+        };
 
 
 function event_spawn(e)
@@ -54,6 +57,8 @@ function event_timer(e)
 end
 
 function event_say(e)
+    local dz = e.other:GetExpedition();
+    local dzid = dz:GetID();
     local player = e.other;
     local zone_short_name = "tipt";
     local zone_id = 289; -- Nexus zone ID
@@ -85,9 +90,12 @@ function event_say(e)
         e.self:Say("Greetings, adventurer. We are looking for someone to help us with a special task. We must cleanse an area of some very shady souls. Would you like to [apply] for the solo challenge or ask for a [group] expedition? You can also ask who is [fastest], or get help with your [corpse].")
     elseif (e.message:findi("apply")) then
         e.self:Say("Dispatch the shady souls as quickly as you can!")
+        
         local instance_id = eq.create_instance(zone_short_name, instance_version, instance_duration);
         eq.assign_to_instance(instance_id);
         player:MovePCInstance(zone_id, instance_id, teleport_x, teleport_y, teleport_z, teleport_h);
+        
+        
     elseif (e.message:findi("group")) then
         local group = player:GetGroup();
         if not group.valid then
@@ -95,15 +103,18 @@ function event_say(e)
         elseif not group:IsLeader(player) then
             e.self:Say("Only your group leader can start the group expedition.");
         else
-            local group_expedition = {
-                expedition = { name = "Halloween: Tipt Version 2", min_players = 1, max_players = 6 },
-                instance   = { zone = zone_short_name, version = 2, duration = eq.seconds("1h") },
-                zonein     = { x = -430, y = -2375, z = 18, h = 0 }
-            };
-            local dz = player:CreateExpedition(group_expedition);
-            if dz.valid then
-                player:MovePCDynamicZone(zone_short_name);
+            if dzid==0 then
+                dz = e.other:CreateExpedition(instance);
+                e.self:Say("Let me know when you're [ready]");
+            else
+                e.other:MovePCDynamicZone("tipt");
             end
+        end
+    elseif (e.message:findi("ready")) then
+        if dzid==0 then
+            e.self:Say("Your group leader can start the group expedition.");
+        else
+            e.other:MovePCDynamicZone("tipt");
         end
     elseif (e.message:findi("corpse")) then
         e.self:Say("You should be more careful in the future.  Here, let me help you.");

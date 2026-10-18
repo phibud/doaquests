@@ -1,5 +1,5 @@
-local livers_needed = "50";
-local reward = "the Eyes Wide Open Rank 2 AA";
+local livers_needed = "100";
+local reward = "the Eyes Wide Open Rank 3 AA";
 
 function event_spawn(e)
     -- Start a timer named "shout" that fires every 900 seconds (15 minutes)
