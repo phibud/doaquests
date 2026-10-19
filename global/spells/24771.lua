@@ -10,8 +10,8 @@ function event_spell_effect_translocate_complete(e)
       dest_x, dest_y, dest_z, dest_h = 1389, 1014, 131, 301; -- Zone: Lavastorm v0
     end
 
-    if (client:GetZoneID() == 27) then
-      client:GMMove(dest_x, dest_y, dest_z, dest_h);
+    if (eq.get_zone_id() == 27) then
+      client:MovePCInstance(27, eq.get_zone_instance_id(), dest_x, dest_y, dest_z, dest_h);
       local pet = client:GetPet();
       if (pet.valid) then
         pet:GMMove(dest_x + 5, dest_y + 5, dest_z, dest_h);
